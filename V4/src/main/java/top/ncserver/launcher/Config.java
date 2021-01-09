@@ -14,8 +14,7 @@ public class Config {
     static Logger logger=LogManager.getLogger(Config.class);
     public static JSONObject JsonConfig;
     public static JSONObject RemoteJsonConfig;
-    public static void loader()
-    {
+    public static void loader() throws IOException {
         logger.info("开始初始化配置文件．．");
         File configFile = new File("config.json");
         if (!configFile.exists())

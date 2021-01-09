@@ -1,10 +1,13 @@
-package top.ncserver.launcher;
+package top.ncserver.selfupdate;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -32,7 +35,7 @@ public class Download {
             url = new URL(httpUrl);
         } catch (MalformedURLException e1) {
             // TODO Auto-generated catch block
-            JOptionPane.showMessageDialog(INIT.alwaysOnTop, "下载地址错误,此错误非玩家触发,请尝试更新启动器解决\n"+e1+"\n", "错误", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(update.alwaysOnTop, "下载地址错误,此错误非玩家触发,请尝试更新启动器解决\n"+e1+"\n", "错误", JOptionPane.ERROR_MESSAGE);
             logger.error("下载地址错误");
             logger.error(e1);
             System.exit(-1);
@@ -53,7 +56,7 @@ public class Download {
             logger.info("下载完成");
             return true;
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(INIT.alwaysOnTop, "下载"+fileName+"时发生错误\n"+e+"\n", "错误", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(update.alwaysOnTop, "下载"+fileName+"时发生错误\n"+e+"\n", "错误", JOptionPane.ERROR_MESSAGE);
             logger.error("下载错误");
             logger.error(e);
             System.exit(-1);

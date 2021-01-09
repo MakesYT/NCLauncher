@@ -3,14 +3,15 @@ package top.ncserver.launcher;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+
 /**
  * @author MakesYT
  */
 
 public class Update {
     static Logger logger= LogManager.getLogger(Update.class);
-    public static void checker()
-    {
+    public static void checker() throws IOException {
         logger.info("开始检查更新..");
         if (!Config.JsonConfig.getString("LauncherVersion").equals(Config.RemoteJsonConfig.getString("LauncherVersion")))
         {
