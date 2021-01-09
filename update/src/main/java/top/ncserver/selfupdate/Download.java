@@ -53,6 +53,7 @@ public class Download {
                 //System.out.println(FormatFileFize.getPrintSize(bytesum));
                 fs.write(buffer, 0, byteread);
             }
+            fs.close();
             logger.info("下载完成");
             return true;
         } catch (IOException e) {

@@ -22,6 +22,8 @@ public class update {
             SecondDetection.JsonConfig.replace("LauncherVersion",SecondDetection.RemoteJsonConfig.getString("LauncherVersion"));
             SecondDetection.saveConfig();
             logger.info("更新完成");
+            Runtime.getRuntime().exec("C:/Windows/System32/cmd.exe /k java -jar "+System.getProperty("user.dir")+"\\Ncharge.jar");
+            System.exit(1);
         }else
         {
             logger.info("无需更新");
