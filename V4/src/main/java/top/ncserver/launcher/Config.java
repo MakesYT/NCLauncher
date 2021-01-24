@@ -39,10 +39,7 @@ public class Config {
             logger.info("配置文件加载完成");
         }catch (Exception e)
         {
-            JOptionPane.showMessageDialog(INIT.alwaysOnTop, "配置文件加载失败\n"+e+"\n", "严重错误", JOptionPane.ERROR_MESSAGE);
-            logger.error("配置文件加载失败");
-            logger.error(e);
-            System.exit(-1);
+            Info.error(Config.class,"配置文件加载失败",e);
         }
         logger.info("获取远程配置文件");
         if (Download.httpDownload("config.json","http://download.ncserver.top:8000/update/V4","temp"))
@@ -59,17 +56,14 @@ public class Config {
                 logger.info("配置文件加载完成");
             }catch (IOException e)
             {
-                JOptionPane.showMessageDialog(INIT.alwaysOnTop, "配置文件加载失败\n"+e+"\n", "严重错误", JOptionPane.ERROR_MESSAGE);
-                logger.error("配置文件加载失败");
-                logger.error(e);
-                System.exit(-1);
+                Info.error(Config.class,"配置文件加载失败",e);
             }
 
         }
 
     }
     static void init() {
-        Map<String, String> map=new LinkedHashMap<String, String>();
+        LinkedHashMap<String, String> map=new LinkedHashMap<String, String>();
         map.put("firstJoin","true");
         map.put("update","false");
         map.put("LauncherVersion","4.0.0-Alpha");
@@ -85,12 +79,21 @@ public class Config {
             config.flush();
             config.close();
         }catch (Exception ignored){
-            JOptionPane.showMessageDialog(INIT.alwaysOnTop, "配置文件生成失败\n"+ignored+"\n", "严重错误", JOptionPane.ERROR_MESSAGE);
-            logger.error("配置文件生成失败");
-            logger.error(ignored);
-            System.exit(-1);
+            Info.error(Config.class,"配置文件生成失败",ignored);
         }
 
+    }
+    public static void saveConfig()
+    {
+        try {
+            FileWriter config=new FileWriter("config.json");
+            System.out.println(JSON.toJSONString(JsonConfig,true));
+            config.write(JSON.toJSONString(JsonConfig,true));
+            config.flush();
+            config.close();
+        }catch (Exception ignored){
+            Info.error(Config.class,"配置文件保存失败",ignored);
+        }
     }
 
 }

@@ -14,7 +14,7 @@ import java.net.URLConnection;
  */
 public class Download {
     static Logger logger= LogManager.getLogger(Download.class);
-    public static boolean httpDownload(String fileName,String httpUrl,String saveFile) throws IOException {
+    public static boolean httpDownload(String fileName, String httpUrl, String saveFile) throws IOException {
         // 下载网络文件
         int bytesum = 0;
         int byteread = 0;
@@ -31,11 +31,7 @@ public class Download {
         try {
             url = new URL(httpUrl);
         } catch (MalformedURLException e1) {
-            // TODO Auto-generated catch block
-            JOptionPane.showMessageDialog(INIT.alwaysOnTop, "下载地址错误,此错误非玩家触发,请尝试更新启动器解决\n"+e1+"\n", "错误", JOptionPane.ERROR_MESSAGE);
-            logger.error("下载地址错误");
-            logger.error(e1);
-            System.exit(-1);
+            Info.error(Download.class,"下载地址错误,此错误非玩家触发,请尝试更新启动器解决",e1);
             return false;
         }
 
@@ -54,10 +50,7 @@ public class Download {
             logger.info("下载完成");
             return true;
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(INIT.alwaysOnTop, "下载"+fileName+"时发生错误\n"+e+"\n", "错误", JOptionPane.ERROR_MESSAGE);
-            logger.error("下载错误");
-            logger.error(e);
-            System.exit(-1);
+            Info.error(Download.class,"下载"+fileName+"时发生错误",e);
             return false;
         }
     }
