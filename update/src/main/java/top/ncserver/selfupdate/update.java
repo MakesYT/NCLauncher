@@ -14,6 +14,7 @@ public class update {
     static Logger logger= LogManager.getLogger(update.class);
     public static JFrame alwaysOnTop =new JFrame("AlwaysOnTop");
     public static void main(String[] args) throws IOException {
+        Info.init();
         SecondDetection.init();
         if (!SecondDetection.JsonConfig.getString("LauncherVersion").equals(SecondDetection.RemoteJsonConfig.getString("LauncherVersion")))
         {

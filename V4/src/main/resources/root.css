@@ -1,28 +1,63 @@
+@font-face {
+   src: url('font1.ttf');
+}
 .root {
    -fx-font-size: 14px;
    -fx-background-radius: 14px;
+   -fx-border-radius: 14px;
+
 }
+
 
 /*按钮基础样式*/
 .btn-basic {
-   /*文本对齐方式*/
-   -fx-text-alignment: center;
-   /*合适高度*/
-   -fx-pref-height: 38px;
-   /*内边距*/
-   -fx-padding: 0 18px;
-   /*无边框*/
-   -fx-border-style: none;
-   /*鼠标样式*/
-   -fx-cursor: pointer;
+   -fx-padding: 5 22 5 22;
+   -fx-border-color: #e2e2e2;
+   -fx-border-width: 2;
+   -fx-background-color: #1d1d1d;
+   /*-fx-font-family: "上首至尊书法体", Helvetica, Arial, sans-serif;*/
+   -fx-font-size: 11pt;
+   -fx-text-fill: #d8d8d8;
+   -fx-background-insets: 0 0 0 0, 0, 1, 2;
+   -fx-background-radius: 14px;
+   -fx-border-radius: 14px;
+   /*文本对齐方式  -fx-text-alignment: center;*/
+
+   /*合适高度 -fx-pref-height: 38px;*/
+
+   /*内边距-fx-padding: 0 18px;*/
+
+   /*无边框 -fx-border-style: none;*/
+
+   /*鼠标样式 -fx-cursor: pointer;*/
+
+}
+
+.window-btn-basic{
+   -fx-padding: 5 22 5 22;
+   -fx-border-width: 2;
+   -fx-text-fill: #d8d8d8;
+   -fx-border-radius: 14px;
+   -fx-cell-size: 10px;
+}
+.window-btn-basic:hover{
+   -fx-effect: dropshadow(three-pass-box, #72b9da, 10.0,0, 0, 0);
+
+   /*透明度*/
+   -fx-opacity: 0.8;
+
+   -fx-cursor: hand;
 }
 
 /*鼠标覆盖按钮效果*/
 .btn-basic:hover {
-   /*粗体*/
-   -fx-font-weight: bold;
+   -fx-effect: dropshadow(three-pass-box, #72b9da, 10.0,0, 0, 0);
+
+   -fx-background-color: #3a3a3a;
    /*透明度*/
    -fx-opacity: 0.8;
+
+   -fx-cursor: hand;
 }
 
 /*边框正常弧度按钮*/
@@ -46,8 +81,7 @@
 /*默认主题*/
 .default-theme {
    -fx-background-color: #fff;
-   -fx-border-color: rgb(230, 230, 230);
-   -fx-text-fill: rgb(110, 110, 110);
+
 
 }
 /*深灰色主题*/
@@ -90,19 +124,20 @@
 }
 
 /*内容盒子样式，设置一下圆角和内边距*/
-.box {
+#box {
    -fx-border-color: rgb(162, 162, 162);
-   -fx-border-radius: 5px;
-   -fx-background-radius: 5px;
+   -fx-border-radius: 10px;
+   -fx-background-radius: 10px;
    -fx-padding: 5 5 5 5;
+   -fx-effect: innershadow(three-pass-box,#72b9da, 10.0,0, 0, 0);
+
 }
 
 /*输入框样式*/
 .input-group {
    /*对齐方式*/
    -fx-text-alignment: left;
-   /*内容显示方式*/
-   -fx-content-display: inline-block;
+
    /*合适高度*/
    -fx-pref-height: 30px;
    /*边框色*/
@@ -117,6 +152,7 @@
    /*内边距*/
    -fx-padding: 5 5 5 5;
    /*鼠标形状*/
+
    -fx-cursor: pointer;
 }
 
@@ -142,7 +178,12 @@
    -fx-border-color: rgb(230, 230, 230);
    -fx-border-radius: 3px;
 }
-
+.big-check-box > .box {
+   -fx-padding: 0.5em 0.5em 0.5em 0.5em ;
+}
+.big-check-box > .box > .mark {
+   -fx-padding: 0.5em 0.5em 0.5em 0.5em;
+}
 /*复选框选中后标记的颜色*/
 .check-box:selected .mark {
    -fx-background-color: #fff;

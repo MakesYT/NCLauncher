@@ -19,6 +19,10 @@ public class SecondDetection {
     public static JSONObject JsonConfig;
     public static JSONObject RemoteJsonConfig;
     public static  void init() throws IOException {
+        Info.init();
+        Info.type=1;
+        Info m=new Info("开始更新启动器");
+        m.run();
         try{
         BufferedReader C = new BufferedReader(new FileReader("config.json"));
         String allConfig="";
@@ -46,7 +50,9 @@ public class SecondDetection {
     {
         try {
             FileWriter config=new FileWriter("config.json");
-            JSON.writeJSONString(config,JsonConfig);
+            config.write(JSON.toJSONString(JsonConfig,true));
+            config.flush();
+            config.close();
         }catch (Exception ignored){
             JOptionPane.showMessageDialog(update.alwaysOnTop, "配置文件生成失败\n"+ignored+"\n", "严重错误", JOptionPane.ERROR_MESSAGE);
             logger.error("配置文件生成失败");

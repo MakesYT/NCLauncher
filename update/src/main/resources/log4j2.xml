@@ -76,7 +76,7 @@
     <!--     然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
     <loggers>
         <!--默认的root的logger-->
-        <root level="debug">
+        <root level="DEBUG">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>
             <appender-ref ref="RollingFileWarn"/>
