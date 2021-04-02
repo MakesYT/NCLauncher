@@ -59,15 +59,18 @@ public class McClientDownload implements Runnable{
         }
         try {
             logger.info("开始改写config中的客户端数值");
-            Config.JsonConfig.replace("ClientVersion",getClientVersion());
+            if (!Config.checkValue("ClientName")) {
 
-            if (Config.checkValue("ClientName"))
-            {
-              Config.JsonConfig.put("ClinetName",getClientName()) ;
-              Config.saveConfig();
-            }
-            Config.JsonConfig.replace("ClientName",getClientName());
-            Config.saveConfig();
+                     Config.JsonConfig.put("ClientName", getClientName());
+                      logger.info("值不存在,添加成功");
+              } else {
+
+                     Config.JsonConfig.replace("ClientName", getClientName());
+
+                 logger.info("改写config中的客户端数值完成");
+                  }
+            Config.JsonConfig.replace("ClientVersion", getClientVersion());
+             Config.saveConfig();
             logger.info("改写config中的客户端数值完成");
         } catch (IOException e) {
             e.printStackTrace();

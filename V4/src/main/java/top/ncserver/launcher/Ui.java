@@ -24,12 +24,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.ncserver.launcher.GMLmincraftStart.start;
 import top.ncserver.launcher.MC.McClientDownload;
 
 import java.io.File;
 import java.util.Optional;
-
-import static top.ncserver.launcher.GMLmincraftStart.start.startMC;
 
 /**
  * @author MakesYT
@@ -99,7 +98,7 @@ public class Ui  {
             public void handle(ActionEvent arg0) {
                 try {
                     logger.info("开始启动游戏");
-                    startMC();
+                    start.startMC();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
