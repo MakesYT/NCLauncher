@@ -1,31 +1,30 @@
-package top.ncserver.launcher.GMLmincraftStart;
+package top.ncserver.launcher.until;
 
 import cn.silently9527.download.download.Downloader;
 import cn.silently9527.download.download.FileDownloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.ncserver.launcher.Config;
+import top.ncserver.launcher.INIT;
 import top.ncserver.launcher.Info;
-import top.ncserver.launcher.Login;
 
 import java.io.File;
 import java.io.IOException;
 
-public class start {
-    static Logger logger = LogManager.getLogger(start.class);
+public class Mcstart {
+    static Logger logger = LogManager.getLogger(Mcstart.class);
     public static void startMC() throws IOException {
         logger.info("开始启动游戏");
 
         String java;
-        if (Config.JsonConfig.getString("java").equals("auto"))
+        if (INIT.clientList.getFirst().getJava().equals("auto"))
         {
             java="\""+System.getProperty("java.home") + "\\bin\\javaw.exe\"";
         }else{
-            java="\""+Config.JsonConfig.getString("java")+"\"";
+            java="\""+INIT.clientList.getFirst().getJava()+"\"";
         }java=java.replace("\\","\\\\");
         logger.info("尝试启动..");
         try{
-            if (Config.JsonConfig.getString("ClientName").equals("null"))
+            if (INIT.clientList.getFirst().getClientName().isEmpty())
             {
                 Info.info(3000, "当前客户端不支持启动", false);
                 logger.info("当前客户端不支持启动");
@@ -33,10 +32,10 @@ public class start {
             {
                 init();
                 Info.info(3000,"游戏已启动请等待运行,启动器将自动退出",false);
-                logger.info("C:/Windows/System32/cmd.exe /k gml-windows.exe -run "+Config.JsonConfig.getString("ClientName")+" -email "+Login.user_email
-                        +" -password "+Login.password+" -yggdrasil https://www.ncserver.top:666 -ram "+Config.JsonConfig.getInteger("RAM")+" -javapath "+java);
-                Runtime.getRuntime().exec("C:/Windows/System32/cmd.exe /k gml-windows.exe -run "+check.check()+" -email "+Login.user_email
-                        +" -password "+Login.password+" -yggdrasil https://www.ncserver.top:666 -ram "+Config.JsonConfig.getInteger("RAM")+" -javapath "+java);
+                logger.info("C:/Windows/System32/cmd.exe /k gml-windows.exe -run "+INIT.clientList.getFirst().getClientName()+" -email "+INIT.userList.getFirst().getUsername()
+                        +" -password "+INIT.userList.getFirst().getPassword()+" -yggdrasil https://www.ncserver.top:666 -ram "+INIT.clientList.getFirst().getRAM()+" -javapath "+java);
+                Runtime.getRuntime().exec("C:/Windows/System32/cmd.exe /k gml-windows.exe -run "+INIT.clientList.getFirst().getClientName()+" -email "+INIT.userList.getFirst().getUsername()
+                        +" -password "+INIT.userList.getFirst().getPassword()+" -yggdrasil https://www.ncserver.top:666 -ram "+INIT.clientList.getFirst().getRAM()+" -javapath "+java);
 
                 Thread t = new Thread(new Runnable(){
                     public void run(){

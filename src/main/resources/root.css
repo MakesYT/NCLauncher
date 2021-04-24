@@ -6,6 +6,7 @@
    -fx-background-radius: 10px;
    -fx-padding: 5 5 5 5;
    -fx-effect: innershadow(three-pass-box,#72b9da, 10.0,0, 0, 0);
+
 }
 
 .font-face {
@@ -83,7 +84,11 @@
 /*默认主题*/
 .default-theme {
    -fx-background-color: #fff;
-
+   -fx-border-color: null;
+   -fx-border-radius: 0px;
+   -fx-background-radius: 0px;
+   -fx-padding: 0;
+   -fx-effect: null;
 
 }
 /*深灰色主题*/
