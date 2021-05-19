@@ -30,7 +30,7 @@ public class Ui {
                 size
         );
     }
-    public static VBox login(){
+    public static VBox login(Stage stage){
         VBox vb = new VBox();
         vb.setId("box");
         vb.setPadding(new Insets(10, 10, 15, 50));
@@ -81,7 +81,7 @@ public class Ui {
                 User u=new User(account.getText(), password.getText());
                 u.getBasic();
                 INIT.userList.add(u);
-                INIT.bp1.setCenter(null);
+                INIT.bp1.setCenter(ui(stage));
                 if (autoLoginCheckBox.isSelected()) {
                     u.saveToFile();
                 }
