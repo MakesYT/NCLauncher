@@ -29,17 +29,19 @@ public class User implements Serializable {
     /*
     @info 获取用户name\皮肤uuid\token
      */
-    public void getBasic() throws IOException, InterruptedException,NullPointerException {
+    public boolean getBasic() throws IOException, InterruptedException,NullPointerException {
 
             JSONObject result=JSONObject.parseObject(Login.login(username,password));
             logger.debug(result.toString());
+            if (result.toString().equals("{\"errorMessage\":\"Your email isn't verified. Please verify it before logging in.\",\"error\":\"ForbiddenOperationException\"}"))
+                return false;
             this.token=result.getString("accessToken");
             //JSONObject uuid=result.getJSONObject("user");
             //this.UUID=uuid.getString("id");
             result=result.getJSONObject("selectedProfile");
             this.name=result.getString("name");
             this.UUID=result.getString("id");
-
+            return true;
     }
     public String getName() throws IOException, InterruptedException {
         if (!name.isEmpty())

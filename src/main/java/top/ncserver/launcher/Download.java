@@ -18,8 +18,7 @@ public class Download {
     public static long alreadyDownloadLength;
     public static long speed;
     static Logger logger = LogManager.getLogger(Download.class);
-    public static void downloadFile(String fileURL,String savePath)
-    {
+    public static void downloadFile(String fileURL,String savePath) throws IOException {
         logger.info("开始下载:"+fileURL+"的文件,保存到:"+savePath);
         Thread thread = new Thread(() -> {
             while (true)
@@ -43,16 +42,14 @@ public class Download {
         thread.setName("下载进度条");
         thread.start();
         Downloader downloader = new FileDownloader();
-        try {
+
             downloader.download(fileURL, savePath);
             thread.stop();
             Platform.runLater(() -> {
                 Ui.progress.setText("");
             });
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         logger.info("下载完成");
     }
 

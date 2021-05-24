@@ -22,6 +22,7 @@ public class Mcstart {
         }else{
             java="\""+INIT.clientList.getFirst().getJava()+"\"";
         }java=java.replace("\\","\\\\");
+
         logger.info("尝试启动..");
         try{
             if (INIT.clientList.getFirst().getClientName().isEmpty())

@@ -17,11 +17,27 @@ import java.util.Objects;
  */
 public class McClientDownload implements Runnable{
     static Logger logger = LogManager.getLogger(McClientDownload.class);
+    static boolean f=false;
     public  McClientDownload() throws IOException {
 
          }
-    @Override
+         public McClientDownload(boolean f)
+         {
+             this.f =f;
+         }
+         @Override
     public void run() {
+        if (f){
+            Platform.runLater(() -> {
+                Info.info(1500,"未找到更新包，开始完整下载",false);
+                try {
+                    Thread.sleep(1600);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+
+        }
         File client = new File(System.getProperty("user.dir")+"//.minecraft");
         if (client.exists())
         {
@@ -66,7 +82,7 @@ public class McClientDownload implements Runnable{
         }
         logger.info("开始存储客户端配置文件");
         try {
-            Client c=new Client(getClientName());
+            Client c=new Client(getClientName(),getClientVersion());
             c.saveToFile();
             INIT.clientList.add(c);
         } catch (IOException e) {

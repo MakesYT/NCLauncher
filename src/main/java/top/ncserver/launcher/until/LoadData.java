@@ -30,15 +30,15 @@ public class LoadData {
                      nameb = user.getName();
                      ois.close();
                      try {
-                        //user.getBasic();
-
-                    } catch (NullPointerException e) {
+                        user.getBasic();
+                         u.add(user);
+                    } catch (NullPointerException|StreamCorruptedException e) {
 
                         file.delete();
                         logger.error("保存的用户数据异常,已删除"+nameb+e);
                         Info.info(3000,"保存的用户数据异常,已删除"+nameb,false);
-                    }u.add(user);
-                } catch (EOFException e) {
+                    }
+                } catch (EOFException|StreamCorruptedException e) {
                     is.close();
                     file.delete();
                     logger.error("data下存在异常文件");

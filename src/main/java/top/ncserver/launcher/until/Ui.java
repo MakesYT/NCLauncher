@@ -79,12 +79,17 @@ public class Ui {
         login.setOnAction(arg0 -> {
             try {
                 User u=new User(account.getText(), password.getText());
-                u.getBasic();
-                INIT.userList.add(u);
-                INIT.bp1.setCenter(ui(stage));
-                if (autoLoginCheckBox.isSelected()) {
-                    u.saveToFile();
+                if (!u.getBasic()){
+                    Info.info(3000,"登陆失败，邮箱未验证",false);
+                }else {
+                    INIT.userList.add(u);
+                    INIT.bp1.setCenter(ui(stage));
+                    if (autoLoginCheckBox.isSelected()) {
+                        u.saveToFile();
+                    }
                 }
+
+
             } catch (Exception e) {
 
                 Info.info(3000,"登陆失败，账号或密码错误",false);
@@ -133,6 +138,14 @@ public class Ui {
             logger.info("进程已启动");
         });
         vb.getChildren().add(down);
+        Button check=new Button("检查客户端更新");
+        check.getStyleClass().add("btn-basic");
+        check.setFont(font(20));
+        check.setOnAction(arg0 -> {
+            logger.info("检查客户端更新");
+           McCheck.check();
+        });
+        vb.getChildren().add(check);
         Button start=new Button("启动游戏");
         start.getStyleClass().add("btn-basic");
         start.setFont(font(20));

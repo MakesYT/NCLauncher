@@ -7,9 +7,16 @@ public class Client implements Serializable {
     String clientName;
     int RAM=8000;
     String Java="auto";
-    public Client(String name){
+    String version=null;
+    public Client(String name,String version){
+        this.version=version;
         this.clientName=name;
     }
+
+    public String getVersion() {
+        return version;
+    }
+
     public String getClientName(){
         return clientName;
     }
@@ -21,6 +28,11 @@ public class Client implements Serializable {
     }
     public void setJava(String java) {Java=java;}
     public void setRAM(int R){RAM=R;}
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
     public void saveToFile() throws IOException {
         File data=new File("data");
         if (!data.exists())
